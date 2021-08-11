@@ -44,3 +44,19 @@
   - 配置格式化：[Prettier](https://prettier.io/docs/en/install.html)
   - 配置[commitlint](https://github.com/conventional-changelog/commitlint)：`['build', 'chore', 'ci', 'docs', 'feat', 'fix', 'perf', 'refactor', 'revert', 'style', 'test'];`
   - 配置[json-server](https://github.com/typicode/json-server)
+
+2021-08-11
+
+- 项目列表页面
+  - 包含组件：搜索框`<input>`、下拉框`select`、列表`table`
+  - 写一个 JS 组件先写状态：`useState`
+  - 状态提升：把状态提升至父组件中，再通过 props 传给子组件，使子组件可以共享状态
+  - 请求项目列表的接口：`useEffect`+`fetch`
+  - 配置 URL 地址：`process.env.REACT_APP_API_URL`
+    - `npm start`读`.env`文件中的环境变量
+    - `npm run build`读`.env.development`文件中的环境变量
+  - 可选链`?.`安全地读取/删除 e.g.`obj?.prop` | `obj?.[prop]` | `obj.method?.()`
+  - 列表组件的每一项元素都要有一个独特的`key`
+  - `/src/utils`存放工具函数 e.g.`isFalsy()`
+  - `npm install qs -D`自动转化为 url 参数的工具
+  - feat: add ProjectList
