@@ -63,3 +63,24 @@
   - 自定义 Hook：
     - ~~`useMount`~~不要在开发中使用
     - `useDebounce`防抖，每次回调都重新开始计时
+
+2021-08-12
+
+- [Typescript 基本知识梳理](https://www.notion.so/4-3-TypeScript-08f52ad87f7540e781144d7688452f39)
+  - 强类型
+  - 数据类型
+    - number
+    - string
+    - array：所有元素类型相同
+    - boolean
+    - function：声明参数和返回值的类型
+    - any：不做任何类型检查
+    - void：函数不返回任何值或者返回 undefined
+    - object
+    - tuple：数量固定、混合类型的数组
+    - enum
+    - null 和 undefined
+    - unknown：严格版 any，但不能赋给其它任何值，也不能读取任何方法
+    - never
+  - `interface`：声明一个自定义类型
+  - `.d.ts`：js 文件 + .d.ts 文件 === ts 文件
