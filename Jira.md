@@ -28,6 +28,7 @@
 - [ ] 乐观更新
 - [ ] 埋点上报
 - [ ] [pwa](https://developer.mozilla.org/zh-CN/docs/Web/Progressive_web_apps)
+- [ ] fetch
 
 ## 开发日志
 
@@ -59,4 +60,6 @@
   - 列表组件的每一项元素都要有一个独特的`key`
   - `/src/utils`存放工具函数 e.g.`isFalsy()`
   - `npm install qs -D`自动转化为 url 参数的工具
-  - feat: add ProjectList
+  - 自定义 Hook：
+    - ~~`useMount`~~不要在开发中使用
+    - `useDebounce`防抖，每次回调都重新开始计时
