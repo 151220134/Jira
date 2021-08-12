@@ -15,8 +15,7 @@ export const cleanObject = (obj: object) => {
   return result;
 };
 
-// 后面改用泛型
-export const useDebounce = (value: unknown, delay?: number): any => {
+export const useDebounce = <V>(value: V, delay?: number): V => {
   // 设置内部状态用来暂存value实现延迟效果
   const [debouncedValue, setDebouncedValue] = useState(value);
 

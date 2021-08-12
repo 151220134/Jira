@@ -66,21 +66,15 @@
 
 2021-08-12
 
-- [Typescript 基本知识梳理](https://www.notion.so/4-3-TypeScript-08f52ad87f7540e781144d7688452f39)
+- Typescript 基本知识梳理
   - 强类型
-  - 数据类型
-    - number
-    - string
-    - array：所有元素类型相同
-    - boolean
+  - [数据类型](https://www.notion.so/4-3-TypeScript-08f52ad87f7540e781144d7688452f39)
     - function：声明参数和返回值的类型
-    - any：不做任何类型检查
     - void：函数不返回任何值或者返回 undefined
-    - object
     - tuple：数量固定、混合类型的数组
-    - enum
-    - null 和 undefined
+    - any：不做任何类型检查
     - unknown：严格版 any，但不能赋给其它任何值，也不能读取任何方法
-    - never
   - `interface`：声明一个自定义类型
   - `.d.ts`：js 文件 + .d.ts 文件 === ts 文件
+  - [类型推断](https://jkchao.github.io/typescript-book-chinese/typings/typeInference.html#%E7%B1%BB%E5%9E%8B%E6%8E%A8%E6%96%AD)
+  - [泛型](https://typescript.bootcss.com/generics.html)
