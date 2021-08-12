@@ -28,3 +28,21 @@ export const useDebounce = <V>(value: V, delay?: number): V => {
 
   return debouncedValue;
 };
+
+export const useArray = <T>(initArray: T[]) => {
+  // 自定义Hook中存储数据要借助useState
+  const [value, setValue] = useState(initArray);
+
+  return {
+    value,
+    setValue,
+    add: (item: T) => setValue([...value, item]),
+    clear: () => setValue([]),
+    removeIndex: (index: number) => {
+      // 在数组的拷贝上进行修改操作
+      const copy = [...value];
+      copy.splice(index, 1);
+      setValue(copy);
+    },
+  };
+};
