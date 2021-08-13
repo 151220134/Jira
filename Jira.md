@@ -99,8 +99,8 @@
 
 2021-08-13
 
-- 登录页面
+- 登录/注册页面
   - json-server 中间件：模拟非 RESTful 的 API
   - 鸭子类型：面向接口编程，而不是面向对象编程
   - 模拟后端数据库的工具[jira-dev-tool](https://www.npmjs.com/package/jira-dev-tool)：[Service Worker](https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API)
-  -
+  - [JWT](https://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html)
