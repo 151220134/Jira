@@ -67,7 +67,9 @@
 2021-08-12
 
 - Typescript 基本知识梳理
+
   - 强类型
+
   - [数据类型](https://www.notion.so/4-3-TypeScript-08f52ad87f7540e781144d7688452f39)
     - function：声明参数和返回值的类型
     - void：函数不返回任何值或者返回 undefined
@@ -75,6 +77,30 @@
     - any：不做任何类型检查
     - unknown：严格版 any，但不能赋给其它任何值，也不能读取任何方法
   - `interface`：声明一个自定义类型
+
   - `.d.ts`：js 文件 + .d.ts 文件 === ts 文件
+
   - [类型推断](https://jkchao.github.io/typescript-book-chinese/typings/typeInference.html#%E7%B1%BB%E5%9E%8B%E6%8E%A8%E6%96%AD)
-  - [泛型](https://typescript.bootcss.com/generics.html)
+
+  - [泛型](https://typescript.bootcss.com/generics.html)：相当于是声明函数时留下占位符，使用函数时给占位符填入具体类型
+
+    ```typescript
+    // 泛型类型
+    interface GenericIdentityFn<T> {
+      (arg: T): T;
+    }
+    // 泛型函数
+    function identity<T>(arg: T): T {
+      return arg;
+    }
+    // 使用泛型类型时要传入类型参数
+    let myIdentity: GenericIdentityFn<number> = identity;
+    ```
+
+2021-08-13
+
+- 登录页面
+  - json-server 中间件：模拟非 RESTful 的 API
+  - 鸭子类型：面向接口编程，而不是面向对象编程
+  - [Service Worker](https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API)
+  -
