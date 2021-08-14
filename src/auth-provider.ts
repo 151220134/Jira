@@ -11,22 +11,27 @@ export const handleUserResponse = ({ user }: { user: User }) => {
   return user;
 };
 
-export const login = (data: { username: string; password: string }) => {
-  fetch(`${apiURL}/login`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  }).then(async (response) => {
-    if (response.ok) {
-      return handleUserResponse(await response.json());
-    }
-  });
-};
-
 export const register = (data: { username: string; password: string }) => {
-  fetch(`${apiURL}/register`, {
+  // fetch 返回一个Promise对象
+  return fetch(`${apiURL}/register`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  }).then(async (response) => {
+    if (response.ok) {
+      // 注册成功，更新localStorage中的token，返回User类型的当前用户信息
+      return handleUserResponse(await response.json());
+    } else {
+      // 注册失败，返回Promise
+      return Promise.reject(data);
+    }
+  });
+};
+
+export const login = (data: { username: string; password: string }) => {
+  return fetch(`${apiURL}/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -35,8 +40,12 @@ export const register = (data: { username: string; password: string }) => {
   }).then(async (response) => {
     if (response.ok) {
       return handleUserResponse(await response.json());
+    } else {
+      return Promise.reject(data);
     }
   });
 };
 
-export const logout = () => window.localStorage.removeItem(localStorageKey);
+// 为什么logout这么写：https://coding.imooc.com/learn/questiondetail/V2104YQJ5ZrXmxQw.html
+export const logout = async () =>
+  window.localStorage.removeItem(localStorageKey);

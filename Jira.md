@@ -28,7 +28,6 @@
 - [ ] 乐观更新
 - [ ] 埋点上报
 - [ ] [pwa](https://developer.mozilla.org/zh-CN/docs/Web/Progressive_web_apps)
-- [ ] fetch
 
 ## 开发日志
 
@@ -41,21 +40,44 @@
   [无须再手动引入 React](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx)
 
 - 配置
+
   - 配置绝对路径：`"baseUrl": "./src"`
+
   - 配置格式化：[Prettier](https://prettier.io/docs/en/install.html)
-  - 配置[commitlint](https://github.com/conventional-changelog/commitlint)：`['build', 'chore', 'ci', 'docs', 'feat', 'fix', 'perf', 'refactor', 'revert', 'style', 'test'];`
+
+  - 配置[commitlint](https://github.com/conventional-changelog/commitlint)
+
+    ```
+    # 主要type
+    feat:     增加新功能
+    fix:      修复bug
+
+    # 特殊type
+    docs:     只改动了文档相关的内容
+    style:    不影响代码含义的改动，例如去掉空格、改变缩进、增删分号
+    build:    构造工具的或者外部依赖的改动，例如webpack，npm
+    refactor: 代码重构时使用
+    revert:   执行git revert打印的message
+
+    # 暂不使用type
+    test:     添加测试或者修改现有测试
+    perf:     提高性能的改动
+    ci:       与CI（持续集成服务）有关的改动
+    chore:    不修改src或者test的其余修改，例如构建过程或辅助工具的变动
+    ```
+
   - 配置[json-server](https://github.com/typicode/json-server)
 
 2021-08-11
 
 - 项目列表页面
-  - 包含组件：搜索框`<input>`、下拉框`select`、列表`table`
+  - 包含组件：搜索框`<input>`、下拉框`<select>`、列表`<table>`
   - 写一个 JS 组件先写状态：`useState`
-  - 状态提升：把状态提升至父组件中，再通过 props 传给子组件，使子组件可以共享状态
-  - 请求项目列表的接口：`useEffect`+`fetch`
+  - 状态提升：state 放在父组件里，通过 props 传给子组件，使子组件可以共享状态
+  - 请求项目列表的接口：`useEffect`+[fetch](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch)
   - 配置 URL 地址：`process.env.REACT_APP_API_URL`
-    - `npm start`读`.env`文件中的环境变量
-    - `npm run build`读`.env.development`文件中的环境变量
+    - `npm start`读`.env.development`文件中的环境变量
+    - `npm run build`读`.env`文件中的环境变量
   - 可选链`?.`安全地读取/删除 e.g.`obj?.prop` | `obj?.[prop]` | `obj.method?.()`
   - 列表组件的每一项元素都要有一个独特的`key`
   - `/src/utils`存放工具函数 e.g.`isFalsy()`
@@ -77,6 +99,13 @@
     - any：不做任何类型检查
     - unknown：严格版 any，但不能赋给其它任何值，也不能读取任何方法
   - `interface`：声明一个自定义类型
+  - 联合类型`|`：取多种类型之一
+
+  - 交叉类型`&`：从两个对象中创建一个新对象，新对象拥有着两个对象所有的功能
+
+  - 类型别名：`type SomeName = someValidTypeAnnotation`
+
+    e.g. `type StrOrNum = string | number;`
 
   - `.d.ts`：js 文件 + .d.ts 文件 === ts 文件
 
@@ -103,4 +132,11 @@
   - json-server 中间件：模拟非 RESTful 的 API
   - 鸭子类型：面向接口编程，而不是面向对象编程
   - 模拟后端数据库的工具[jira-dev-tool](https://www.npmjs.com/package/jira-dev-tool)：[Service Worker](https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API)
-  - [JWT](https://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html)
+- Auth
+  - [JWT](https://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html)：`Header.Payload.Signature`，服务器无状态；使用 JWT 实现[Auth](https://vertxchina.github.io/vertx-translation-chinese/auth/JWTAuth.html)
+  - 在 React 中使用[Context](http://www.ptbird.cn/react-createContex-useContext.html)：全局存储用户信息
+    1. 创建 context：`const MyContext = React.createContext(defaultValue)`
+    2. 父组件提供 value：`<MyContext.Provider value={{xx:xx}}>`
+    3. 子组件获取 context：`const {funcName} = useContext(MyContext);`
+  - `AuthProvider`：已经封装好 value 值，直接在根节点上使用 AuthProvider 即可
+  - `useAuth`：在`useContext`的基础上封装一层，避免在所有需要使用 context 的组件中导入具体的 context（即上面 3.中 MyContext），直接调用 useAuth()即可
