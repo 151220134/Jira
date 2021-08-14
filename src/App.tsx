@@ -1,7 +1,7 @@
 import React from 'react';
-import { useAuth } from 'screens/Context/AuthContext';
-import { UnauthenticatedApp } from 'screens/UnauthenticatedApp';
-import { AuthenticatedApp } from 'screens/AuthenticatedApp';
+import { useAuth } from 'Context/AuthContext';
+import { UnauthenticatedApp } from 'UnauthenticatedApp';
+import { AuthenticatedApp } from 'AuthenticatedApp';
 // import logo from './logo.svg';
 import './App.css';
 

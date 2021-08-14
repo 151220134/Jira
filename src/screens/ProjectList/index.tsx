@@ -1,10 +1,8 @@
 import { SearchPanel } from "screens/ProjectList/SearchPanel"
 import { List } from "screens/ProjectList/List"
 import { useState, useEffect } from "react"
-import * as qs from "qs"
 import { cleanObject, useDebounce } from "utils";
-
-const apiURL = process.env.REACT_APP_API_URL;
+import { useHttp } from "utils/http";
 
 export const ProjectListScreen = () => {
     
@@ -16,22 +14,25 @@ export const ProjectListScreen = () => {
     const [users, setUsers] = useState([]);
     const [list, setList] = useState([]);
     const debouncedParam = useDebounce(param);
+    const client = useHttp();
 
     // 初始化 users，等效于ComponentDidMount
     useEffect(() => {
-        fetch(`${apiURL}/users`).then(async response => {
-            if(response.ok) {
-                setUsers(await response.json());
-            }
-        })
+        client('users').then(setUsers)
+        // fetch(`${apiURL}/users`).then(async response => {
+        //     if(response.ok) {
+        //         setUsers(await response.json());
+        //     }
+        // })
     }, [])
 
     useEffect(() => {
-        fetch(`${apiURL}/projects?${qs.stringify(cleanObject(debouncedParam))}`).then(async response => {
-            if(response.ok) {
-                setList(await response.json());
-            }
-        })
+        client('projects', {data: cleanObject(debouncedParam)}).then(setList)
+        // fetch(`${apiURL}/projects?${qs.stringify(cleanObject(debouncedParam))}`).then(async response => {
+        //     if(response.ok) {
+        //         setList(await response.json());
+        //     }
+        // })
     }, [debouncedParam])
 
     return (

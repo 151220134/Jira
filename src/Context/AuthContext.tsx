@@ -1,11 +1,22 @@
-import { ReactNode, useContext, useState } from "react";
+import { ReactNode, useContext, useEffect, useState } from "react";
 import * as auth from "auth-provider";
 import React from "react";
 import { User } from 'screens/ProjectList/SearchPanel'
+import { http } from "utils/http";
 
 interface AuthForm {
     username: string,
     password: string
+}
+
+const bootstrapUser = async () => {
+    let user = null;
+    const token = auth.getToken();
+    if(token) {
+        const data = await http('me', {token});
+        user = data.user;
+    }
+    return user;
 }
 
 const AuthContext = React.createContext<{
@@ -26,6 +37,12 @@ export const AuthProvider = ({children}: {children: ReactNode}) => {
     const register = (form: AuthForm) => auth.register(form).then(setUser)
     const login = (form: AuthForm) => auth.login(form).then(setUser)
     const logout = () => auth.logout().then(() => setUser(null))
+
+    // 在页面加载之后，取localStorage中读token，带着token请求对应用户信息user
+    useEffect(() => {
+        // 初始化user
+        bootstrapUser().then(setUser);
+    }, [])
 
     // value中给出user值和可以引发user值变化的方法，但不能直接setUser
     return <AuthContext.Provider children={children} value={{user, register, login, logout}}/>

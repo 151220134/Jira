@@ -139,10 +139,15 @@
     2. 父组件提供 value：`<MyContext.Provider value={{xx:xx}}>`
     3. 子组件获取 context：`const {funcName} = useContext(MyContext);`
   - `AuthProvider`：已经封装好 value 值，直接在根节点上使用 AuthProvider 即可
-  - `useAuth`：在`useContext`的基础上[封装一层](https://coding.imooc.com/learn/questiondetail/jlqGx6zEj1RXe1Dk.html)，避免在所有需要使用 context 的组件中导入具体的 context（即上面 3.中 MyContext），直接调用 useAuth()即可
+  - `useAuth`：在`useContext`的基础上[封装一层](https://coding.imooc.com/learn/questiondetail/jlqGx6zEj1RXe1Dk.html)，避免在所有需要使用 context 的组件中导入具体的 context（即上面 3.中 MyContext），直接调用 useAuth()即可取到当前用户 user 的值
 
 2021-08-14
 
 - 登录/非登录状态
   - 结合 useAuth 实现登录与非登录状态之间的切换
--
+- 抽象 HTTP 请求
+  - 改造 http 方法：可以兼容
+  - `useHttp`：给（通过 fetch 发出）的 http 请求带上 token
+- 保持登录状态
+  - `bootstrapUser`：在页面加载之后，取 localStorage 中读 token，带着 token 请求对应用户信息 user
+  - 实际效果：在登录状态下刷新页面，会先闪一下非登录状态，再转成登录状态
