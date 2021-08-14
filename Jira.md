@@ -139,4 +139,10 @@
     2. 父组件提供 value：`<MyContext.Provider value={{xx:xx}}>`
     3. 子组件获取 context：`const {funcName} = useContext(MyContext);`
   - `AuthProvider`：已经封装好 value 值，直接在根节点上使用 AuthProvider 即可
-  - `useAuth`：在`useContext`的基础上封装一层，避免在所有需要使用 context 的组件中导入具体的 context（即上面 3.中 MyContext），直接调用 useAuth()即可
+  - `useAuth`：在`useContext`的基础上[封装一层](https://coding.imooc.com/learn/questiondetail/jlqGx6zEj1RXe1Dk.html)，避免在所有需要使用 context 的组件中导入具体的 context（即上面 3.中 MyContext），直接调用 useAuth()即可
+
+2021-08-14
+
+- 登录/非登录状态
+  - 结合 useAuth 实现登录与非登录状态之间的切换
+-

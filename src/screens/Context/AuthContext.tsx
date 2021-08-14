@@ -28,10 +28,11 @@ export const AuthProvider = ({children}: {children: ReactNode}) => {
     const logout = () => auth.logout().then(() => setUser(null))
 
     // value中给出user值和可以引发user值变化的方法，但不能直接setUser
-    return <AuthContext.Provider value={{user, register, login, logout}}/>
+    return <AuthContext.Provider children={children} value={{user, register, login, logout}}/>
 }
 
 // 在子节点上用useAuth，读取Context
+// 封装的好处：https://coding.imooc.com/learn/questiondetail/jlqGx6zEj1RXe1Dk.html
 export const useAuth = () => {
     const context = useContext(AuthContext);
     if(!context) {
