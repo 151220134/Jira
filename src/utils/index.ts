@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 
 export const isFalsy = (value: unknown) => (value === 0 ? false : !value);
 
-export const cleanObject = (obj: object) => {
+export const isVoid = (value: unknown) =>
+  value === undefined || value === null || value === "" || value === [];
+
+export const cleanObject = (obj: { [key: string]: unknown }) => {
   const result = { ...obj }; // Object.assgin({}, obj)
   Object.keys(result).forEach((key) => {
-    // @ts-ignore
     const value = result[key];
-    if (isFalsy(value)) {
-      // @ts-ignore
+    // isFalsy会把false判断为true导致对应属性被删除，不符合预期
+    if (isVoid(value)) {
       delete result[key];
     }
   });

@@ -20,10 +20,12 @@ export const ProjectListScreen = () => {
     // 初始化 users，等效于ComponentDidMount
     useEffect(() => {
         client('users').then(setUsers)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
         client('projects', {data: cleanObject(debouncedParam)}).then(setList)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [debouncedParam])
 
     return (

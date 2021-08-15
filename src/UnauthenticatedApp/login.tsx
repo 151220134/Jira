@@ -1,6 +1,5 @@
-import { FormEvent } from "react"
 import { useAuth } from "context/AuthContext";
-import { Button, Form, Input } from "antd"
+import { Form, Input } from "antd"
 import { LongButton } from "UnauthenticatedApp";
 
 export const LoginScreen = () => {
@@ -9,13 +8,13 @@ export const LoginScreen = () => {
 
     // FormEvent 是泛型类型
     // HTMLFormElement extends Element 鸭子类型只看接口
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        // as HTMLFormElement 是类型断言，Element上没有value属性
-        const username = (e.currentTarget.elements[0] as HTMLFormElement).value;
-        const password = (e.currentTarget.elements[1] as HTMLFormElement).value;
-        login({username, password});
-    }
+    // const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    //     e.preventDefault();
+    //     // as HTMLFormElement 是类型断言，Element上没有value属性
+    //     const username = (e.currentTarget.elements[0] as HTMLFormElement).value;
+    //     const password = (e.currentTarget.elements[1] as HTMLFormElement).value;
+    //     login({username, password});
+    // }
 
     // values中的属性名由Form.Item的name属性决定
     const handleFinish = (values: {username: string, password: string}) => {

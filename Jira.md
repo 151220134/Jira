@@ -189,3 +189,10 @@
 - 优化各个页面的布局
 
   - 安装[dayjs](https://www.npmjs.com/package/dayjs)
+
+- 清除 warning
+
+  - 因为 Function 对象、RegExp 对象会被作为 Object 类型，但不能被展开语法作用，所以在声明类型是要用`{[key: string]: unknown}`
+  - 用`<Button type={"link"}>`代替`<a>`标签
+  - useEffect 依赖：`// eslint-disable-next-line react-hooks/exhaustive-deps`
+  - 安装 react-query

@@ -55,11 +55,12 @@
     "dayjs": "^1.10.6",
     "eslint-config-prettier": "^8.3.0",
     "husky": "^7.0.1",
-    "jira-dev-tool": "^1.7.61",
+    "jira-dev-tool": "^1.6.59",
     "json-server": "^0.16.3",
     "lint-staged": "^11.1.2",
     "prettier": "2.3.2",
-    "qs": "^6.10.1"
+    "qs": "^6.10.1",
+    "react-query": "^3.19.6"
   },
   "lint-staged": {
     "*.{js,css,md,ts,txs}": "prettier --write"
