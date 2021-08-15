@@ -1,6 +1,6 @@
 import qs from "qs";
 import * as auth from "auth-provider";
-import { useAuth } from "Context/AuthContext";
+import { useAuth } from "context/AuthContext";
 
 const apiURL = process.env.REACT_APP_API_URL;
 

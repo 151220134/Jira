@@ -163,7 +163,29 @@
 2021-08-15
 
 - [AntDesign](https://ant.design/index-cn)
+
   - [在 create-react-app 中使用](https://ant.design/docs/react/use-with-create-react-app-cn)
   - [antd 组件](https://ant.design/components/overview-cn/)替换原生组件
+
 - CSS-in-JS：[Emotion](https://emotion.sh/docs/introduction)
-  - style component
+
+  - css Prop
+  - [Styled Components](https://curlywater.github.io/blog/f2e/css/emotion/#styled-components)：`import styled from '@emotion/styled'`
+
+- Grid 布局
+
+  - [圣杯布局](https://www.digitalocean.com/community/tutorials/css-css-grid-holy-grail-layout)
+
+- Flex 布局
+
+  - [圣杯布局](https://philipwalton.github.io/solved-by-flexbox/demos/holy-grail/)
+
+- grid 和 flex 各自的应用场景 1. 是一维布局还是二维布局？一维布局用 flex，二维布局用 grid 2. 是从内容出发还是从布局出发？
+
+  从内容出发：先有一组内容(数量一般不固定)，然后希望他们**均匀分布**在容器中，由内容自己的大小决定占据的空间，用 flex
+
+  从布局出发：先规划**网格**(数量一般比较固定)，然后再把元素往里填充，用 grid
+
+- 优化各个页面的布局
+
+  - 安装[dayjs](https://www.npmjs.com/package/dayjs)

@@ -1,6 +1,7 @@
 import { FormEvent } from "react"
-import { useAuth } from "Context/AuthContext";
+import { useAuth } from "context/AuthContext";
 import { Button, Form, Input } from "antd"
+import { LongButton } from "UnauthenticatedApp";
 
 export const LoginScreen = () => {
 
@@ -25,14 +26,14 @@ export const LoginScreen = () => {
     <Form onFinish={handleFinish}
     // onSubmit={handleSubmit}
     >
-        <Form.Item name={"username"} label={"用户名"} rules={[{required: true, message: "请输入用户名"}]}>
+        <Form.Item name={"username"} rules={[{required: true, message: "请输入用户名"}]}>
             <Input placeholder="用户名" type="text" id={"username"}/>
         </Form.Item>
-        <Form.Item name={"password"} label={"密码"} rules={[{required: true, message: "请输入密码"}]}>
+        <Form.Item name={"password"} rules={[{required: true, message: "请输入密码"}]}>
             <Input.Password placeholder="密码" type="text" id={"password"}/>
         </Form.Item>
         <Form.Item>
-            <Button htmlType={"submit"} type={"primary"}>登录</Button>
+            <LongButton htmlType={"submit"} type={"primary"}>登录</LongButton>
         </Form.Item>
     </Form>)
 }
