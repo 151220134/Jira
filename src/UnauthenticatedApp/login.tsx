@@ -1,5 +1,6 @@
 import { FormEvent } from "react"
 import { useAuth } from "Context/AuthContext";
+import { Button, Form, Input } from "antd"
 
 export const LoginScreen = () => {
 
@@ -14,17 +15,24 @@ export const LoginScreen = () => {
         const password = (e.currentTarget.elements[1] as HTMLFormElement).value;
         login({username, password});
     }
+
+    // values中的属性名由Form.Item的name属性决定
+    const handleFinish = (values: {username: string, password: string}) => {
+        login(values);
+    }
      
     return (
-    <form onSubmit={handleSubmit}>
-        <div>
-            <label htmlFor="username">用户名</label>
-            <input type="text" id={"username"}/>
-        </div>
-        <div>
-            <label htmlFor="password">密码</label>
-            <input type="password" id={"password"}/>
-        </div>
-        <button type={'submit'}>登录</button>
-    </form>)
+    <Form onFinish={handleFinish}
+    // onSubmit={handleSubmit}
+    >
+        <Form.Item name={"username"} label={"用户名"} rules={[{required: true, message: "请输入用户名"}]}>
+            <Input placeholder="用户名" type="text" id={"username"}/>
+        </Form.Item>
+        <Form.Item name={"password"} label={"密码"} rules={[{required: true, message: "请输入密码"}]}>
+            <Input.Password placeholder="密码" type="text" id={"password"}/>
+        </Form.Item>
+        <Form.Item>
+            <Button htmlType={"submit"} type={"primary"}>登录</Button>
+        </Form.Item>
+    </Form>)
 }

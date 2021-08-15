@@ -42,9 +42,7 @@
 - 配置
 
   - 配置绝对路径：`"baseUrl": "./src"`
-
   - 配置格式化：[Prettier](https://prettier.io/docs/en/install.html)
-
   - 配置[commitlint](https://github.com/conventional-changelog/commitlint)
 
     ```
@@ -89,42 +87,15 @@
 2021-08-12
 
 - Typescript 基本知识梳理
-
   - 强类型
-
   - [数据类型](https://www.notion.so/4-3-TypeScript-08f52ad87f7540e781144d7688452f39)
     - function：声明参数和返回值的类型
     - void：函数不返回任何值或者返回 undefined
     - tuple：数量固定、混合类型的数组
     - any：不做任何类型检查
     - unknown：严格版 any，但不能赋给其它任何值，也不能读取任何方法
-  - `interface`：声明一个自定义类型
-  - 联合类型`|`：取多种类型之一
-
-  - 交叉类型`&`：从两个对象中创建一个新对象，新对象拥有着两个对象所有的功能
-
-  - 类型别名：`type SomeName = someValidTypeAnnotation`
-
-    e.g. `type StrOrNum = string | number;`
-
   - `.d.ts`：js 文件 + .d.ts 文件 === ts 文件
-
   - [类型推断](https://jkchao.github.io/typescript-book-chinese/typings/typeInference.html#%E7%B1%BB%E5%9E%8B%E6%8E%A8%E6%96%AD)
-
-  - [泛型](https://typescript.bootcss.com/generics.html)：相当于是声明函数时留下占位符，使用函数时给占位符填入具体类型
-
-    ```typescript
-    // 泛型类型
-    interface GenericIdentityFn<T> {
-      (arg: T): T;
-    }
-    // 泛型函数
-    function identity<T>(arg: T): T {
-      return arg;
-    }
-    // 使用泛型类型时要传入类型参数
-    let myIdentity: GenericIdentityFn<number> = identity;
-    ```
 
 2021-08-13
 
@@ -151,3 +122,48 @@
 - 保持登录状态
   - `bootstrapUser`：在页面加载之后，取 localStorage 中读 token，带着 token 请求对应用户信息 user
   - 实际效果：在登录状态下刷新页面，会先闪一下非登录状态，再转成登录状态
+- Typescript 高级类型
+
+  - 联合类型`|`：取多种类型中的一个
+  - 交叉类型`&`：具有多种类型的所有属性
+  - `interface`：定义对象的类型
+  - 类型别名：不会新建一个类型，`type SomeName = someValidTypeAnnotation` e.g. `type StrOrNum = string | number;`
+  - [泛型](https://typescript.bootcss.com/generics.html)：相当于是声明时留下占位符，使用时给占位符填入具体类型，常用的有泛型函数、泛型接口、泛型类型
+
+    ```typescript
+    // 泛型类型
+    interface GenericIdentityFn<T> {
+      (arg: T): T;
+    }
+    // 泛型函数
+    function identity<T>(arg: T): T {
+      return arg;
+    }
+    // 使用泛型类型时要传入类型参数
+    let myIdentity: GenericIdentityFn<number> = identity;
+    ```
+
+  - 类型保护
+
+    - `typeof`
+    - `instanceof`
+    - `in`
+    - `keyof`
+
+  - [Utility Types](https://segmentfault.com/a/1190000018726280#item-5-18)（常用）
+
+    - `Partial<T>`：T 的所有属性均为可选
+    - `Required<T>`：T 的所有属性均为必选
+    - `Pick<T, K>`：从 T 中选出 K 属性，可以使用联合类型来选择多个字段
+    - `Omit<T, K>`：从 T 中忽略 K 属性
+    - `Extract<T, U>`：从 T 中提取 U 子集
+    - `Exclude<T, U>`：从 T 中排除 U
+    - `Paramters`：该类型可以获得函数的参数类型组成的元组类型
+
+2021-08-15
+
+- [AntDesign](https://ant.design/index-cn)
+  - [在 create-react-app 中使用](https://ant.design/docs/react/use-with-create-react-app-cn)
+  - [antd 组件](https://ant.design/components/overview-cn/)替换原生组件
+- CSS-in-JS：[Emotion](https://emotion.sh/docs/introduction)
+  - style component
