@@ -196,3 +196,10 @@
   - 用`<Button type={"link"}>`代替`<a>`标签
   - useEffect 依赖：`// eslint-disable-next-line react-hooks/exhaustive-deps`
   - 安装 react-query
+
+2021-08-16
+
+- 加载中 loading 和错误 error 状态处理
+  - `useAsync`：储存异步请求的状态
+  - `useUsers`和`useProjects`：多抽象一层，把 useAsync 返回的信息封装在这两个自定义 hook 内部
+- Event Loop
