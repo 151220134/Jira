@@ -203,4 +203,6 @@
   - `useAsync`：储存异步请求的状态，可以包裹于所有的异步请求，e.g. users 接口、projects 接口、me 接口
   - `useUsers`和`useProjects`：多抽象一层，把 useAsync 返回的信息封装在这两个自定义 hook 内部
 - Event Loop
-- Error Boundaries
+- [Error Boundaries](https://zh-hans.reactjs.org/docs/error-boundaries.html)：如果在渲染阶段出现异常，整个组件树都会被卸载
+- `type PropsWithChildren<P> = P & { children?: ReactNode | undefined };`
+- `static getDerivedStateFromError(error: Error) `
