@@ -1,10 +1,12 @@
 import { useAuth } from "context/AuthContext";
 import { Form, Input } from "antd"
 import { LongButton } from "UnauthenticatedApp";
+import { useAsync } from "utils/useAsync";
 
-export const LoginScreen = () => {
+export const LoginScreen = ({onError}:{onError:(error:Error)=>void}) => {
 
     const {login} = useAuth()
+    const {run, isLoading} = useAsync(undefined, {throwOnError: true});
 
     // FormEvent 是泛型类型
     // HTMLFormElement extends Element 鸭子类型只看接口
@@ -17,8 +19,8 @@ export const LoginScreen = () => {
     // }
 
     // values中的属性名由Form.Item的name属性决定
-    const handleFinish = (values: {username: string, password: string}) => {
-        login(values);
+    const handleFinish = async (values: {username: string, password: string}) => {
+        await run(login(values)).catch(onError);
     }
      
     return (
@@ -32,7 +34,7 @@ export const LoginScreen = () => {
             <Input.Password placeholder="密码" type="text" id={"password"}/>
         </Form.Item>
         <Form.Item>
-            <LongButton htmlType={"submit"} type={"primary"}>登录</LongButton>
+            <LongButton loading={isLoading} htmlType={"submit"} type={"primary"}>登录</LongButton>
         </Form.Item>
     </Form>)
 }

@@ -1,10 +1,12 @@
 import { useAuth } from "context/AuthContext";
 import { Form, Input } from "antd"
 import { LongButton } from "UnauthenticatedApp";
+import { useAsync } from "utils/useAsync";
 
-export const RegisterScreen = () => {
+export const RegisterScreen = ({onError}:{onError:(error:Error)=>void}) => {
 
     const {register} = useAuth()
+    const {run, isLoading} = useAsync(undefined, {throwOnError: true});
 
     // FormEvent 是泛型类型
     // HTMLFormElement extends Element 鸭子类型只看接口
@@ -17,8 +19,12 @@ export const RegisterScreen = () => {
     // }
      
     // values中的属性名由Form.Item的name属性决定
-    const handleFinish = (values: {username: string, password: string}) => {
-        register(values)
+    const handleFinish = async ({cpassword, ...values}: {username: string, password: string, cpassword: string}) => {
+        if(cpassword!==values.password) {
+            onError(new Error('请确认两次输入的密码相同'))
+            return
+        }
+        await run(register(values)).catch(onError)
     }
 
     return (
@@ -31,8 +37,11 @@ export const RegisterScreen = () => {
         <Form.Item name={"password"} rules={[{required: true, message: "请输入密码"}]}>
             <Input placeholder="密码" type="text" id={"password"}/>
         </Form.Item>
+        <Form.Item name={"cpassword"} rules={[{required: true, message: "请确认密码"}]}>
+            <Input placeholder="确认密码" type="text" id={"cpassword"}/>
+        </Form.Item>
         <Form.Item>
-            <LongButton htmlType={"submit"} type={"primary"}>注册</LongButton>
+            <LongButton loading={isLoading} htmlType={"submit"} type={"primary"}>注册</LongButton>
         </Form.Item>
     </Form>)
 }
