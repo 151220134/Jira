@@ -210,4 +210,6 @@
 2021-08-20
 
 - [react-helmet](https://github.com/nfl/react-helmet)
-- 用`useDocumentTitle`改变文档标题
+- 用`useDocumentTitle`改变文档标题，`keepOnUmount`如果是 false 就会把 title 还原
+- React Hook 与闭包的坑： useEffect 回调函数里形成的闭包引用的 state 永远是初始化时的值；解决方法：在 useEffect 的依赖里加上这个 state
+- `useRef`：返回一个可变的 ref 对象，其 `.current` 属性被初始化为传入的参数（`initialValue`）。返回的 ref 对象在组件的整个生命周期内持续存在。用来持久化变量
