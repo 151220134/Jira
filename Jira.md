@@ -212,4 +212,9 @@
 - [react-helmet](https://github.com/nfl/react-helmet)
 - 用`useDocumentTitle`改变文档标题，`keepOnUmount`如果是 false 就会把 title 还原
 - React Hook 与闭包的坑： useEffect 回调函数里形成的闭包引用的 state 永远是初始化时的值；解决方法：在 useEffect 的依赖里加上这个 state
-- `useRef`：返回一个可变的 ref 对象，其 `.current` 属性被初始化为传入的参数（`initialValue`）。返回的 ref 对象在组件的整个生命周期内持续存在。用来持久化变量
+- `useRef`：返回一个可变的 ref 对象，其 `.current` 属性被初始化为传入的参数（`initialValue`）。返回的 ref 对象在组件的整个生命周期内持续存在。用来持久化变量。
+- 用[react-router](https://react-guide.github.io/react-router-cn/)6 添加项目列表和项目详情路由
+  - 路由配置：router 如何匹配 url 和组件以及匹配后如何执行代码
+  - 路由匹配：嵌套路由是树形结构，react-router 会深度优先遍历整个路由配置来寻找一个与给定的 URL 相匹配的路由
+  - [history](https://github.com/rackt/history)
+- react-router 和 react-router-dom 之间的关系，类似于 react 和 react-dom/react-native
