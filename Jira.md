@@ -206,3 +206,8 @@
 - [Error Boundaries](https://zh-hans.reactjs.org/docs/error-boundaries.html)：如果在渲染阶段出现异常，整个组件树都会被卸载
 - `type PropsWithChildren<P> = P & { children?: ReactNode | undefined };`
 - `static getDerivedStateFromError(error: Error) `
+
+2021-08-20
+
+- [react-helmet](https://github.com/nfl/react-helmet)
+- 用`useDocumentTitle`改变文档标题
