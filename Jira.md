@@ -218,3 +218,12 @@
   - 路由匹配：嵌套路由是树形结构，react-router 会深度优先遍历整个路由配置来寻找一个与给定的 URL 相匹配的路由
   - [history](https://github.com/rackt/history)
 - react-router 和 react-router-dom 之间的关系，类似于 react 和 react-dom/react-native
+
+2021-08-21
+
+- 用`useUrlQueryParam`实现 URL 状态管理
+- 用来获取[URLSearchParams](https://developer.mozilla.org/zh-CN/docs/Web/API/URLSearchParams)的 Hook：`useSearchParams`
+- `as const`即[const 断言](https://juejin.cn/post/6844903848939634696)，让对象字面量变成只读属性，让数组字面量变成只读元组
+- 用`useMemo`解决[依赖循环问题](https://www.notion.so/useCallback-useMemo-f5add874170f494fafca8ec99449f560)
+- 安装[why-did-you-render](https://github.com/welldone-software/why-did-you-render)
+- 凡是部署了 iterator 的数据都可以用`for...of`遍历，e.g. Array/Map/Set
